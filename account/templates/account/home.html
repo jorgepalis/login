@@ -1,0 +1,59 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block form_title %}¡Bienvenido a nuestra plataforma!{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        {% if user.is_authenticated %}
+            <p class="lead mb-5">Hola, {{ user.first_name|default:user.username }}. ¿Qué deseas hacer?</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title mb-3">Mi Perfil</h3>
+                            <p class="card-text flex-grow-1">Accede a tu información personal y datos de tu cuenta.</p>
+                            <a href="{% url 'account:profile' %}" class="btn btn-primary btn-lg">Ver mi perfil</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title mb-3">Cerrar Sesión</h3>
+                            <p class="card-text flex-grow-1">Finalizar tu sesión actual en la plataforma.</p>
+                            <a href="{% url 'account:logout' %}" class="btn btn-danger btn-lg">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="lead mb-5">Selecciona una opción para continuar</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title mb-3">Iniciar Sesión</h3>
+                            <p class="card-text flex-grow-1">¿Ya tienes una cuenta? Inicia sesión para acceder a todas las funciones.</p>
+                            <a href="{% url 'account:login' %}" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title mb-3">Registrarse</h3>
+                            <p class="card-text flex-grow-1">¿Eres nuevo? Crea una cuenta en nuestra plataforma en pocos pasos.</p>
+                            <a href="{% url 'account:registro_paso1' %}" class="btn btn-success btn-lg">Crear Cuenta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

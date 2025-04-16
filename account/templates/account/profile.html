@@ -1,0 +1,90 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block form_title %}Mi Perfil{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Información de la cuenta</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Nombre de usuario:</strong> {{ user.username }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Email:</strong> {{ user.email }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Nombre:</strong> {{ user.first_name }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Apellido:</strong> {{ user.last_name }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Información personal</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Teléfono:</strong> {{ profile.phone_number|default:"No disponible" }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Fecha de nacimiento:</strong> {{ profile.date_of_birth|date:"d/m/Y"|default:"No disponible" }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Dirección</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Dirección:</strong> {{ profile.address|default:"No disponible" }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Ciudad:</strong> {{ profile.city|default:"No disponible" }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Estado/Provincia:</strong> {{ profile.state|default:"No disponible" }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <strong>Código postal:</strong> {{ profile.postal_code|default:"No disponible" }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if profile.bio %}
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Biografía</h5>
+        </div>
+        <div class="card-body">
+            <p>{{ profile.bio }}</p>
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="d-grid gap-2 mt-4">
+        <a href="{% url 'account:home' %}" class="btn btn-primary">Volver al inicio</a>
+    </div>
+{% endblock %}
