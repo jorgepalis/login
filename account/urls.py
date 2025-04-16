@@ -4,7 +4,6 @@ from . import views
 app_name = 'account'
 
 urlpatterns = [
-    path('', views.home, name='home'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),  # Nueva URL para cerrar sesión
     path('profile/', views.user_profile, name='profile'),

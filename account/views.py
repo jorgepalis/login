@@ -31,7 +31,7 @@ def user_login(request):
                     return redirect(f'account:registro_paso{profile.registration_step}')
             except UserProfile.DoesNotExist:
                 messages.success(request, '¡Bienvenido de nuevo!')
-                return redirect('account:home')
+                return redirect('home')
         else:
             messages.error(request, 'Nombre de usuario o contraseña incorrectos')
     
@@ -190,10 +190,10 @@ def user_profile(request):
         return render(request, 'account/profile.html', {'profile': profile})
     except UserProfile.DoesNotExist:
         messages.error(request, "No se encontró un perfil para este usuario.")
-        return redirect('account:home')
+        return redirect('home')
 
 def user_logout(request):
     """Vista para cerrar sesión"""
     logout(request)
     messages.success(request, "Has cerrado sesión correctamente.")
-    return redirect('account:home')
+    return redirect('home')
